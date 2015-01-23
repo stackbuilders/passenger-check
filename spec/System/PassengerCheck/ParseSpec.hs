@@ -16,11 +16,11 @@ instance Eq ParseError where
   a == b = errorMessages a == errorMessages b
 
 parseOutput :: String -> Either ParseError PassengerStatus
-parseOutput status = parse statusOutputParser "(unknown)" status
+parseOutput = parse statusOutputParser "(unknown)"
 
 spec :: Spec
-spec = do
-  describe "parse" $ do
+spec =
+  describe "parse" $
     it "parses the MaxPoolSize" $ do
       f <- readFile "spec/fixtures/passstats"
       parseOutput f `shouldBe` Right (PassengerStatus 6 2 3 [1, 2])
