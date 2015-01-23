@@ -2,8 +2,6 @@
 
 module System.PassengerCheck.Parse (statusOutputParser) where
 
-import Data.Text
-
 import System.PassengerCheck.Types
 
 import Text.Parsec
@@ -12,6 +10,13 @@ import Text.Parsec.String
 import Text.ParserCombinators.Parsec.Char (string, space, tab, newline)
 import Text.ParserCombinators.Parsec.Token (integer)
 import Control.Applicative ((<*>), (*>), (<$>), (<*))
+
+statusOutputParser :: Parser PassengerStatus
+statusOutputParser = do
+  _ <- manyTill anyChar (lookAhead (try maxPoolSizeLine))
+
+  PassengerStatus <$> maxPoolSizeLine <*> processesLine <*>
+    topLevelRequestLine <*> localQueueRequestLines
 
 colonSeparatedLine :: String -> Parser Integer
 colonSeparatedLine lhsString =
@@ -43,10 +48,3 @@ localQueueRequestLines =
 
   where prefixParser = manyTill anyChar (lookAhead (try lineParser))
         lineParser   = colonSeparatedLine "Requests in queue"
-
-statusOutputParser :: Parser PassengerStatus
-statusOutputParser = do
-  _ <- manyTill anyChar (lookAhead (try maxPoolSizeLine))
-
-  PassengerStatus <$> maxPoolSizeLine <*> processesLine <*>
-    topLevelRequestLine <*> localQueueRequestLines
