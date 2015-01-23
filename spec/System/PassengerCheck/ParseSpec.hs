@@ -3,7 +3,6 @@
 module System.PassengerCheck.ParseSpec (spec) where
 
 import Test.Hspec
--- import Data.Text
 
 import Text.Parsec
 
@@ -24,4 +23,4 @@ spec = do
   describe "parse" $ do
     it "parses the MaxPoolSize" $ do
       f <- readFile "spec/fixtures/passstats"
-      parseOutput f `shouldBe` Right (PassengerStatus 6 2 3)
+      parseOutput f `shouldBe` Right (PassengerStatus 6 2 3 [1, 2])

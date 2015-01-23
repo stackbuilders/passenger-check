@@ -9,12 +9,12 @@ Requests in top-level queue : 3
 [33m[44m[1m----------- Application groups -----------[0m
 /var/projects/MSA-Tools/current#default:
   App root: /var/projects/MSA-Tools/current
-  Requests in queue: 0
+  Requests in queue: 1
   * PID: 22448   Sessions: 0       Processed: 4       Uptime: 79h 57m 49s
     CPU: 0%      Memory  : 143M    Last used: 68h 23m
 
 /var/projects/MSA-Tools_qa/current#default:
   App root: /var/projects/MSA-Tools_qa/current
-  Requests in queue: 0
+  Requests in queue: 2
   * PID: 1414    Sessions: 0       Processed: 7       Uptime: 78h 3m 3s
     CPU: 0%      Memory  : 114M    Last used: 75h 3m 0s
