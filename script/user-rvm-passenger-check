@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# This script is useful if passenger is installed under a
+# user-specific RVM. This script loads the appropriate rvm environment
+# and changes to the project, which triggers gemset loading so that
+# passenger is available to the passenger-check.
+
+if [ "$#" -eq 0 ] || [ ! -d $ARGV[0] ]; then
+    >&2 echo "First argument must be the name of your project directory using RVM."
+    exit 1
+fi
+
+
+# Load RVM into a shell session *as a function*
+if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
+  # First try to load from a user install
+    source "$HOME/.rvm/scripts/rvm"
+
+elif [[ -s "/usr/local/rvm/scripts/rvm" ]] ; then
+  # Then try to load from a root install
+    source "/usr/local/rvm/scripts/rvm"
+
+else
+  printf "ERROR: An RVM installation was not found.\n"
+
+fi
+
+export rvmsudo_secure_path=1
+
+pushd $ARGV[0] && rvmsudo /usr/local/bin/passenger-check && popd
