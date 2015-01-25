@@ -5,12 +5,6 @@
 # and changes to the project, which triggers gemset loading so that
 # passenger is available to the passenger-check.
 
-if [ "$#" -eq 0 ] || [ ! -d $ARGV[0] ]; then
-    >&2 echo "First argument must be the name of your project directory using RVM."
-    exit 1
-fi
-
-
 # Load RVM into a shell session *as a function*
 if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
   # First try to load from a user install
@@ -25,6 +19,14 @@ else
 
 fi
 
+rack_dir=`ps aux | grep RackApp | grep -v grep | head -n 1 | ruby -ne 'puts $1.strip if ~/Rack.*App: (.*)/'`
+
+if [ -z $rack_dir ] || [ ! -d $rack_dir ] ; then
+    >&2 echo "Unable to determine active Passenger project directory."
+    exit 1
+fi
+
+
 export rvmsudo_secure_path=1
 
-pushd $ARGV[0] && rvmsudo /usr/local/bin/passenger-check && popd
+pushd $rack_dir > /dev/null && rvmsudo /usr/local/bin/passenger-check && popd > /dev/null
