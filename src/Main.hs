@@ -1,7 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# ANN module "HLint: ignore Use string literal" #-}
 
 module Main where
+
+{-# ANN module "HLint: ignore Use string literal" #-}
 
 import qualified System.PassengerCheck.Health as H
 
