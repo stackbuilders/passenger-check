@@ -64,7 +64,7 @@ getStatus (Right stat) = let (check, message) = H.status stat in
 
 runCheck :: IO ()
 runCheck = do
-  res <- readProcess "/usr/local/bin/passenger-status" [] []
+  res <- readProcess "passenger-status" [] []
   let parsed = parse statusOutputParser "(passenger-status)" res
 
   runNagiosPlugin (getStatus parsed)
