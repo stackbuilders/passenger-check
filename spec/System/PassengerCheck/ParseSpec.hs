@@ -22,5 +22,5 @@ spec :: Spec
 spec =
   describe "parse" $
     it "parses the MaxPoolSize" $ do
-      f <- readFile "spec/fixtures/passstats"
+      f <- readFile "spec/fixtures/passstats.txt"
       parseOutput f `shouldBe` Right (PassengerStatus 6 2 3 [1, 2])
