@@ -9,7 +9,7 @@ maintainer:          justin@stackbuilders.com
 copyright:           2015 Stack Builders Inc.
 category:            System
 build-type:          Simple
-extra-source-files:  spec/fixtures/*
+extra-source-files:  spec/fixtures/*.txt
 cabal-version:       >=1.10
 
 executable passenger-check
