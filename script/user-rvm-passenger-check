@@ -19,7 +19,7 @@ else
 
 fi
 
-rack_dir=`ps aux | grep RackApp | grep -v grep | head -n 1 | ruby -ne 'puts $1.strip if ~/Rack.*App: (.*)/'`
+rack_dir=`find /var/projects/ -maxdepth 2 -name current -type l | head -n 1`
 
 if [ -z $rack_dir ] || [ ! -d $rack_dir ] ; then
     >&2 echo "Unable to determine active Passenger project directory."
