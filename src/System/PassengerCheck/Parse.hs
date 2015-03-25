@@ -7,9 +7,7 @@ import System.PassengerCheck.Types
 import Text.Parsec
 import Text.Parsec.String
 
-import Text.ParserCombinators.Parsec.Char (string, space, tab, newline)
-import Text.ParserCombinators.Parsec.Token (integer)
-import Control.Applicative ((<*>), (*>), (<$>), (<*))
+import Control.Applicative ((<*>), (*>), (<$>))
 
 statusOutputParser :: Parser PassengerStatus
 statusOutputParser = do
