@@ -1,7 +1,17 @@
 name:                passenger-check
 version:             0.1.0.0
 synopsis:            Checks the status of Passenger instances for Nagios
+homepage:            https://github.com/stackbuilders/passenger-check
 description:
+  .
+  Passenger has a maximum queue size that determines how many incoming
+  requests can be serviced. This can fill up, leading to requests being
+  denied. This plugin checks the maximum queue size and all active
+  queues and returns an alert if the queue is getting too close to
+  capacity.
+  .
+  The output format is suitable for Nagios and compatible monitoring
+  frameworks.
 license:             MIT
 license-file:        LICENSE
 author:              Justin Leitgeb
@@ -11,6 +21,7 @@ category:            System
 build-type:          Simple
 extra-source-files:  spec/fixtures/*.txt
 cabal-version:       >=1.10
+bug-reports:         https://github.com/stackbuilders/passenger-check/issues
 
 executable passenger-check
   main-is:             Main.hs

@@ -8,11 +8,9 @@ import qualified System.PassengerCheck.Health as H
 import System.Console.GetOpt
 
 import System.Environment (getArgs, getProgName)
-import System.Exit (ExitCode(..), exitWith, exitSuccess)
-import System.IO.Error (ioError)
+import System.Exit (exitSuccess)
 
 import Paths_passenger_check (version)
-import Data.Maybe (fromMaybe)
 
 import Data.Version (showVersion)
 
@@ -56,7 +54,7 @@ headerMessage :: String -> String
 headerMessage progName = "Usage: " ++ progName ++ " [OPTION...]"
 
 getStatus :: Either ParseError PassengerStatus -> NagiosPlugin ()
-getStatus (Left parseError) =
+getStatus (Left _) =
   addResult Unknown "Unable to parse passenger-status output"
 
 getStatus (Right stat) = let (check, message) = H.status stat in
